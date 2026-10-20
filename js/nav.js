@@ -13,13 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
         "href": "about.html"
     }
 ];
-
     var nav = document.getElementById('site-nav');
     if (!nav) return;
-
     var base = document.querySelector('script[src$="nav.js"]').src.replace(/js\/nav\.js$/, '');
     var here = window.location.pathname.split('/').pop() || 'index.html';
-
     function buildItem(item) {
         if (item.children) {
             var childHtml = item.children.map(buildItem).join('');
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         return '<a href="' + base + item.href + '"' + (cls ? ' class="' + cls + '"' : '') + '>' + item.label + '</a>';
     }
-
     nav.className = 'navbar';
     nav.innerHTML =
         '<div class="container">' +
@@ -47,10 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 NAV.map(buildItem).join('') +
             '</div>' +
         '</div>';
-
     var toggle = nav.querySelector('.nav-toggle');
     var links = nav.querySelector('.nav-links');
-
     toggle.addEventListener('click', function () {
         var isOpen = links.classList.toggle('open');
         toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
