@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offline DB Test</title>
+    <!-- Load sql.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+</head>
+<body>
+    <h1>Inventory Query</h1>
+    <button onclick="runQuery()">Load DB & Run Query</button>
+    <pre id="output"></pre>
+
+    <script>
+        async function runQuery() {
+            const output = document.getElementById('output');
+            output.textContent = "Loading database...";
+
+            try {
+                // 1. Initialize sql.js
+                const SQL = await initSqlJs({
+                    locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+                });
+
+                // 2. Fetch the db file into memory
+                const response = await fetch('content.db');
+                const buffer = await response.arrayBuffer();
+
+                // 3. Load it into SQLite
+                const db = new SQL.Database(new Uint8Array(buffer));
+
+                // 4. Run a query
+                const stmt = db.prepare("SELECT slug, title FROM pages WHERE status = 'published'");
+                let html = "<table border='1'><tr><th>Slug</th><th>Title</th></tr>";
+                
+                while (stmt.step()) {
+                    const row = stmt.getAsObject();
+                    html += `<tr><td>${row.slug}</td><td>${row.title}</td></tr>`;
+                }
+                html += "</table>";
+                output.innerHTML = html;
+                
+                stmt.free();
+                db.close();
+
+            } catch (err) {
+                output.textContent = "Error: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
