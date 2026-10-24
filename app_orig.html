@@ -29,12 +29,12 @@
                 const db = new SQL.Database(new Uint8Array(buffer));
 
                 // 4. Run a query
-                const stmt = db.prepare("SELECT slug, title FROM pages WHERE status = 'published'");
-                let html = "<table border='1'><tr><th>Slug</th><th>Title</th></tr>";
+                const stmt = db.prepare("SELECT id, slug, title FROM pages WHERE status = 'published'");
+                let html = "<table border='1'><tr><th>ID</th><th>Slug</th><th>Title</th></tr>";
                 
                 while (stmt.step()) {
                     const row = stmt.getAsObject();
-                    html += `<tr><td>${row.slug}</td><td>${row.title}</td></tr>`;
+                    html += `<tr><td>${row.id}</td><td>${row.slug}</td><td>${row.title}</td></tr>`;
                 }
                 html += "</table>";
                 output.innerHTML = html;

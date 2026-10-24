@@ -1,10 +1,18 @@
+:root {
+    --bg: #121612;
+    --text: #E4E7E4;
+    --border: #364936;
+    --primary: #00FF00;
+    --secondary: #E052E0;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 body {
     margin: 0;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.55;
-    color: #222;
-    background: #fff;
+    color: var(--text);
+    background: var(--bg);
 }
 
 .zone-header, .zone-nav, .zone-center, .zone-footer {
@@ -16,24 +24,25 @@ body {
 .zone-header {
     padding-top: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
     font-weight: 600;
     font-size: 1.125rem;
 }
-.zone-header a { color: #111; text-decoration: none; }
+.zone-header a { color: var(--text); text-decoration: none; }
 
 .zone-nav {
     padding-top: 0.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border);
 }
 .zone-nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1.25rem; }
-.zone-nav a { color: #005ea8; text-decoration: none; }
+.zone-nav a { color: var(--primary); text-decoration: none; }
 .zone-nav a:hover { text-decoration: underline; }
 
 /* Hero Banner */
 .hero {
-    background: #f4f5f7;
+    background: var(--bg);
+    border: 1px solid var(--border);
     padding: 3rem 2rem;
     margin-bottom: 2rem;
     border-radius: 4px;
@@ -42,73 +51,85 @@ body {
     margin: 0 0 0.5rem 0;
     font-size: 2.25rem;
     font-weight: 600;
-    color: #111;
+    color: var(--text);
 }
 .hero-subtitle {
     margin: 0 0 1.5rem 0;
     font-size: 1.125rem;
-    color: #444;
+    color: var(--text);
+    opacity: 0.8;
     max-width: 40rem;
 }
 .btn-primary {
     display: inline-block;
-    background: #1d2d50;
-    color: #fff;
+    background: var(--primary);
+    color: var(--bg);
     padding: 0.6rem 1.2rem;
     text-decoration: none;
     border-radius: 3px;
     font-weight: 500;
+    border: 1px solid var(--border);
 }
-.btn-primary:hover { background: #2a3f6e; }
+.btn-primary:hover { 
+    background: var(--secondary); 
+    color: var(--bg);
+}
 
 /* Main Content */
 .zone-center { padding-top: 2rem; padding-bottom: 3rem; }
 .page-title { margin-top: 0; margin-bottom: 1.5rem; }
 
+/* Ensure buttons in body text sit nicely */
+.zone-center .btn-primary {
+    margin: 1rem 0;
+    display: inline-block;
+}
+
 .zone-footer {
     padding-top: 1rem;
     padding-bottom: 2rem;
-    border-top: 1px solid #ddd;
-    color: #666;
+    border-top: 1px solid var(--border);
+    color: var(--text);
+    opacity: 0.7;
     font-size: 0.875rem;
 }
 
 /* Markdown Styles */
 pre {
-    background: #f4f4f4;
+    background: var(--border);
     padding: 1rem;
     overflow-x: auto;
     border-radius: 3px;
 }
 code {
     font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    background: #f4f4f4;
+    background: var(--border);
     padding: 0.1em 0.35em;
     border-radius: 2px;
 }
 
 /* --- Cards --- */
 .card {
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 2rem;
     margin-bottom: 2rem;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    background: var(--bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .card h3 {
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 1.4rem;
-    color: #222;
+    color: var(--text);
 }
 
 /* Style inline code as pills inside cards */
 .card code {
     display: inline-block;
-    background: #f0f2f5;
-    color: #333;
+    background: var(--border);
+    color: var(--text);
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
     font-size: 0.85rem;
@@ -119,21 +140,21 @@ code {
 
 .card p {
     margin-bottom: 1.5rem;
-    color: #444;
+    color: var(--text);
 }
 
 .card strong {
     display: block;
     font-size: 0.85rem;
     letter-spacing: 0.5px;
-    color: #555;
+    color: var(--primary);
     margin-bottom: 0.25rem;
 }
 
 /* --- Navigation (matching nav.js output) --- */
 .navbar {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
     padding: 0.5rem 1.25rem;
 }
 
@@ -152,14 +173,14 @@ code {
 }
 
 .nav-links a {
-    color: #005ea8;
+    color: var(--primary);
     text-decoration: none;
     font-size: 0.95rem;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #111;
+    color: var(--text);
     font-weight: 600;
     text-decoration: underline;
 }
@@ -167,40 +188,53 @@ code {
 /* Dropdowns */
 .nav-dropdown {
     position: relative;
+    display: inline-block;
 }
-.nav-dropdown summary {
+
+.nav-dropdown-label {
     cursor: pointer;
-    color: #005ea8;
+    color: var(--primary);
     font-size: 0.95rem;
-    list-style: none; /* Hide default triangle */
+    padding-bottom: 10px; 
 }
-.nav-dropdown summary::-webkit-details-marker {
-    display: none;
-}
-.nav-dropdown[open] summary {
-    color: #111;
+
+.nav-dropdown:hover .nav-dropdown-label {
+    color: var(--text);
     font-weight: 600;
 }
+
+/* The Menu - Hidden by default */
 .nav-dropdown-menu {
+    display: none; 
     position: absolute;
     top: 100%;
     left: 0;
-    background: #fff;
-    border: 1px solid #ddd;
+    background: var(--bg);
+    border: 1px solid var(--border);
     border-radius: 4px;
     padding: 0.5rem 0;
     min-width: 200px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 100;
-    display: flex;
     flex-direction: column;
 }
+
+/* Show on Hover */
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: flex;
+}
+
 .nav-dropdown-menu a {
     padding: 0.5rem 1rem;
     display: block;
+    white-space: nowrap;
+    color: var(--primary);
+    text-decoration: none;
 }
+
 .nav-dropdown-menu a:hover {
-    background: #f4f5f7;
+    background: var(--border);
+    color: var(--text);
 }
 
 /* Mobile Toggle (Hamburger) */
@@ -215,6 +249,185 @@ code {
     display: block;
     width: 24px;
     height: 2px;
-    background: #333;
+    background: var(--text);
     margin: 4px 0;
+}
+
+/* --- Tables --- */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    background-color: var(--border);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+}
+
+tr:hover {
+    background-color: var(--border);
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 1.05rem; 
+    }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* --- CSS Bar Chart --- */
+.chart-container {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+.chart-container h4 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+.chart-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+.chart-label {
+    width: 150px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 1rem;
+    color: var(--text);
+}
+.chart-bar-bg {
+    flex-grow: 1;
+    background: var(--border);
+    height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.chart-bar-fill {
+    background: var(--primary);
+    height: 100%;
+    border-radius: 3px;
+}
+.chart-value {
+    width: 80px;
+    flex-shrink: 0;
+    text-align: right;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* --- Alerts --- */
+.alert {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--bg);
+}
+.alert p { margin: 0; }
+.alert strong { font-weight: 600; }
+
+.alert-info {
+    border-left-color: var(--primary);
+    background-color: var(--bg);
+}
+
+.alert-warning {
+    border-left-color: #F59E0B; /* Amber/Yellow */
+    background-color: var(--bg);
+}
+
+.alert-error {
+    border-left-color: #EF4444; /* Red */
+    background-color: var(--bg);
+}
+
+.alert-success {
+    border-left-color: #10B981; /* Green */
+    background-color: var(--bg);
+}
+
+/* --- Tables --- */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+/* --- Columns --- */
+.columns-wrapper {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+@media (max-width: 768px) {
+    .columns-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* --- Accordions --- */
+.accordion {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    background-color: var(--card-bg);
+}
+.accordion summary {
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--bg);
+    border-radius: 4px;
+}
+.accordion summary:hover {
+    background-color: var(--border);
+}
+.accordion-content {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+
+/* --- Table Modifiers --- */
+.table-zebra tbody tr:nth-child(even) {
+    background-color: var(--border);
+}
+
+.table-compact th, 
+.table-compact td {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
 }
