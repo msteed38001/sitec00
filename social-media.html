@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>Social Media - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/social_media_00.png'); background-size: cover; background-position: center;"><h1 class="hero-title">Social Media: The Local Publishing Pipeline</h1><p class="hero-subtitle">The Social Media app isn't just a database - it's a local asset generation pipeline. </p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>Built on the exact same Micro-Kernel interface as Cardex and TUIDex, this app takes structured data (quotes, stats, war stories) and renders them into pixel-perfect PNGs and PDFs using Pillow. It formats content specifically for LinkedIn and Instagram, entirely on your local machine. </p>
+<p>No Canva subscriptions. No cloud API limits. Just pure Python generating high-resolution graphics.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Batch Processing</h3>
+<p>Instead of creating graphics one by one, you define a "batch." The engine reads the entries in your sort order, applies the layout template, and exports the entire series as PNGs and PDFs in seconds.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Template-Driven Layouts</h3>
+<p>The visual style is controlled by a <code>templates.toml</code> file. You can define fonts, color palettes, canvas sizes, margins, and text-wrapping rules. Change the TOML, and the entire output style changes instantly.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The Interface</h3>
+<p>Here is the grid view where the posts are staged. Notice the fields for <code>Template</code>, <code>Batch</code>, <code>Subject</code>, and <code>Format</code>. </p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-social-grid').showModal()">
+<img src="images/social_grid_00.png" alt="Social Media Grid View">
+</button>
+<dialog id="img-social-grid" class="image-modal">
+<img src="images/social_grid_00.png" alt="Social Media Grid View">
+</dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-social-detail').showModal()">
+<img src="images/social_detail_01.png" alt="Social Media Detail View">
+</button>
+<dialog id="img-social-detail" class="image-modal">
+<img src="images/social_detail_01.png" alt="Social Media Detail View">
+</dialog></p>
+</div>
+</div>
+
+<h3>The Pipeline in Action</h3>
+<p>This is where the Micro-Kernel gets interesting. The engine reads the text and the <code>templates.toml</code> config, uses Pillow to render the background, text positioning, and typography, and spits out a final asset ready to be uploaded.</p>
+<p>Here is an example of a generated post, alongside the TOML configuration that defined its layout and fonts:</p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-social-output').showModal()">
+<img src="images/social_output_00.png" alt="Social Media Output">
+</button>
+<dialog id="img-social-output" class="image-modal">
+<img src="images/social_output_00.png" alt="Social Media Output">
+</dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-social-template').showModal()">
+<img src="images/social_template_00.png" alt="Templates TOML">
+</button>
+<dialog id="img-social-template" class="image-modal">
+<img src="images/social_template_00.png" alt="Templates TOML">
+</dialog></p>
+</div>
+</div>
+
+<h3>Why Local Generation?</h3>
+<p>Tools like Canva are great, but they require a browser, a subscription, and a stable internet connection. If you are pushing out content regularly, you need a system that is repeatable and fast. </p>
+<p>By keeping this in the terminal, you can write a quote, assign it a template, and export a batch of 20 high-res PNGs in seconds. The output is deterministic. The layout engine doesn't break. And because it's part of the Micro-Kernel, your source data is stored locally in SQLite.</p>
+<details class="accordion">
+<summary>How does the Pillow renderer work?</summary>
+<div class="accordion-content">
+<p>The <code>render.py</code> module is a custom plug-in for the Social Media app. It reads the <code>[canvas]</code> and <code>[base]</code> settings from the TOML file (width, height, background color, fonts, sizes). It takes the text from the database, calculates the text wrapping, applies the correct margins, and draws everything onto the image buffer before saving.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>What formats does it support?</summary>
+<div class="accordion-content">
+<p>The app primarily outputs 1080x1350 images optimized for Instagram and LinkedIn, but the canvas size and PDF page size are controlled in the TOML. You can export directly to PDF if you want to create a multi-page carousel or a printed document.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

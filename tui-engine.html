@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>TUI Engine - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/tui_01.jpg'); background-size: cover; background-position: center;"><h1 class="hero-title">The Micro-Kernel UI</h1><p class="hero-subtitle">A keyboard-driven application engine built for raw speed, deterministic data entry, and a minimal footprint (Tomllib, Pillow, and Markdown).</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <h3>Enterprise Applications. Built for the Terminal.</h3>
+<p>When people hear "terminal app," they think of a 1970s command line. But I built a full application framework. </p>
+<p>This isn't a script. It's a complete MVC architecture that runs in a terminal window. It renders interactive data grids, handles complex relational lookups, and manages hundreds of data entry fields on a single 13-inch screen. </p>
+<p>This is the engine that powers the Cardex (CRM), the Toolcrib (Inventory), Tuidex (personal knowledgement manager), and the Social Media Publisher.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>The "Cabinet" UI</h3>
+<p>Modern web apps force you to scroll endlessly. When you have 150+ data entry fields on a 13-inch screen, scrolling kills productivity.  So I built the "Cabinet" UI.</p>
+<p>Fields are grouped into cabinets. You hit <code>C</code> to open a list, or <code>&lt;-</code> and <code>-&gt;</code> to slide between them. You hit <code>Tab</code> to jump between fields. No mouse. Just muscle memory.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>In-Memory Joins</h3>
+<p>The TUI engine doesn't hit the database for every keystroke.</p>
+<p>It caches lookup tables in memory. It maps foreign keys to human-readable strings instantly, so you can sort, filter, and edit 75,000 rows without a single loading spinner.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The "No-Code" Engine (For Data Apps)</h3>
+<p>Most of my data management apps—like the CRMs, inventory trackers, and compliance logs—don't require any Python coding to build or modify. </p>
+<p>Because the engine is entirely TOML-driven, the Python code is just a rendering layer. You can define a new table, a new menu, and a new data-entry layout just by writing a TOML file. You can even write those TOML files <em>inside</em> the TUI itself. It is the same concept as using C to compile another C program. The tool builds the tool.</p>
+<p>Here is the actual interface rendered by the engine for a simple grocery inventory, followed by the TOML configuration that generated it.</p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-grid').showModal()"></p>
+<p><img src="images/grid_00.png" alt="Grid Image"></p>
+<p></button></p>
+<p><dialog id="img-grid" class="image-modal"></p>
+<p><img src="images/grid_00.png" alt="Grid Image"></p>
+<p></dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-code').showModal()"></p>
+<p><img src="images/code_00.png" alt="Code Image"></p>
+<p></button></p>
+<p><dialog id="img-code" class="image-modal"></p>
+<p><img src="images/code_00.png" alt="Code Image"></p>
+<p></dialog></p>
+</div>
+</div>
+
+<h3>Why the Terminal?</h3>
+<p>Because GUI frameworks choke on data.</p>
+<p>I built a Tkinter GUI version of this engine. It has nice buttons and a familiar desktop feel. But a Tkinter <code>Treeview</code> (which isn't even a real data grid) will freeze at 5,000 rows. A simple calendar widget can take 5 seconds to render because it's busy calculating pixels. </p>
+<p>My Curses TUI handles 5,000 rows instantly because it doesn't care about pixels. It paints characters to a buffer. You don't need a 5-second calendar popup; you just type <code>2024-05-12</code>. </p>
+<p>If your team is doing high-volume data entry, the mouse is the enemy. The terminal is the cure.</p>
+<details class="accordion">
+<summary>Why only the standard library?</summary>
+<div class="accordion-content">
+<p>There are plenty of third-party TUI frameworks out there. <code>urwid</code>, <code>textual</code>, <code>prompt_toolkit</code>. But I don't use them.</p>
+<ul>
+<li>
+<p><code>prompt_toolkit</code> wants to hijack the terminal input loop, making multi-pane applications a nightmare.</p>
+</li>
+<li>
+<p><code>textual</code> is essentially CSS + a DOM renderer. It's a web browser disguised as a terminal app. If you want a button to move, you write a CSS rule.</p>
+</li>
+</ul>
+<p>I use <code>curses</code>. It ships with Python. It hasn't changed since the 90s. It is the most stable UI framework in existence. It doesn't try to be a web browser. It just paints characters to a screen.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>The Micro-Kernel Architecture</summary>
+<div class="accordion-content">
+<p>I built a Micro-Kernel. The core engine (<code>src/</code>) handles SQLite CRUD, Curses rendering, and the grid state.</p>
+<p>The applications (<code>Cardex</code>, <code>Toolcrib</code>, <code>Social Media</code>) live in isolated directories. They inherit from the core engine, but they can override anything. If an app needs a custom renderer or a specific business rule, it just drops a Python file into its own folder. The engine detects it, uses it for that app, and leaves the rest of the system untouched.</p>
+<p>I built this entire ecosystem in 4 days. Not by "vibe coding," but by using AI as a junior programmer. I provided the architecture and the 30 years of business logic. It wrote the boilerplate. I did the testing, the Q&amp;A, and the rewrites.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

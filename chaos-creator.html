@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>Chaos Engine - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/etl_breaker_00.png'); background-size: cover; background-position: center;"><h1 class="hero-title">Test the Chaos. Before it Tests You.</h1><p class="hero-subtitle">Every pipeline works when data is clean. This Python tool injects hidden BOMs, corrupt joins, and invisible byte streams to harden your enterprise systems.</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <h3>I break data on purpose, so you don't break in production.</h3>
+<p>Every data engineer builds pipelines to process clean data. I build tools to generate the worst data imaginable. </p>
+<p>Why? Because your pipeline will inevitably encounter it. A vendor sends a CSV with a hidden UTF-16 BOM. A legacy system injects a Zero-Width Space into a part number. Pandas silently strips a metadata header and corrupts the downstream join. </p>
+<p>If you don't test for the chaos, the chaos will test you-usually at 2 AM on a Saturday.</p>
+<h3>The Levels of Chaos</h3>
+<p>The Chaos Engine is a Python-based data corruption generator. It applies escalating levels of stress to your test pipelines. (Levels 1 through 4 generate the mess. Level 5 documents how AI creates the mess. Level 4 is the final encoding torture test.)</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Level 1: Typos &amp; Casing</h3>
+<p>Simulates human error. Randomly changes casing, transposes characters, and adds trailing spaces to names and codes. If your join keys aren't trimmed or normalized, this will catch it.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Level 2: Phonetic Shifts</h3>
+<p>Uses Soundex and phonetic swapping to generate "looks right, sounds wrong" data. Tests how fuzzy-matching algorithms handle duplicate vendors or misspelled customer names.</p>
+</div>
+
+</div>
+</div>
+
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Level 3: Invisible Characters</h3>
+<p>Injects Zero-Width Spaces (ZWSP), homoglyphs, and mojibake. To the human eye, the data looks perfectly clean. To your database, the join key doesn't match, and the invoice fails silently.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Level 4: BOM Torture Files</h3>
+<p>Generates files in UTF-8, UTF-16LE, UTF-16BE, and UTF-32. It forces your parser to deal with the Byte Order Mark (BOM). If your tool strips the BOM "for convenience," it breaks downstream consumers that expect it.</p>
+</div>
+
+</div>
+</div>
+
+<div class="alert alert-info">
+<p><strong>Level 5: The AI Reference Library.</strong> AI is not a corruption generator. It is a clean-data generator. But it has its own chaos: it invents sources, fabricates details, and silently substitutes NULLs. Level 5 documents exactly how AI behaves so you know what to ignore and what to verify.</p>
+</div>
+
+<h3>The Pandas Problem</h3>
+<p>I don't use Pandas. And neither should you - at least not for mission-critical data ingestion. </p>
+<p>Pandas is famous for silently "fixing" data. The latest versions strip BOMs because they consider it a "pesky remnant." But that BOM was telling your downstream system what encoding to expect. When Pandas removes it, it silently corrupts the contract. </p>
+<p>The Chaos Engine proves exactly where and how Pandas fails. It finds the silent data loss, the <code>NaN</code> conversions, and the encoding mismatches before they hit your production database.</p>
+<h3>Running the Chaos Engine</h3>
+<p>The engine is driven by TOML profiles and command-line flags, so you can target the exact type of corruption your pipeline needs to be tested against. </p>
+<p>Here is how I run it against a sample CRM dataset:</p>
+<div class="card">
+<pre><code># Test for phonetic mismatches (Soundex)
+python src/main.py run --profile profiles_crm.toml --variant soundex
+
+# Test for human typos and casing errors
+python src/main.py run --profile profiles_crm.toml --variant typos
+
+# Test for invisible characters (ZWSP, etc.)
+python src/main.py run --profile profiles_crm.toml --variant hidden
+
+# Generate a clean baseline for comparison
+python src/main.py run --profile profiles_crm.toml --variant clean_baseline
+
+# Run full corruption (all levels combined)
+python src/main.py run --profile profiles.toml --variant full_corruption
+</code></pre>
+</div>
+
+<h3>The Ground Truth Ledger</h3>
+<p>Corrupting data is easy. Knowing exactly <em>what</em> you corrupted is the hard part. </p>
+<p>When the engine generates a corrupted dataset, it simultaneously writes a "Ground Truth" YAML file. This acts as a ledger. It records the original value, the corrupted value, and the specific mutation applied. </p>
+<p>This allows you to test your pipeline against the corrupted file, and then use the YAML file to audit exactly where and why your pipeline failed.</p>
+<p>Here is a sample of the output for a single record:</p>
+<div class="card">
+<pre><code>metadata:
+generated_at: '2026-09-04T13:11:39.424845'
+seed: 12345
+chaos_level: 1
+variant: all
+industry: technology
+profile: profiles_crm.toml
+record_count: 50
+
+records:
+- db_id: 2561
+record_id: 1
+notes: 'name: ''Rogers Software'' → ''RogersS oftware'' | email: ''rogers@example.com''
+→ ''rogers@eample.com'' | phone: ''555-995-8093'' → ''55-5995-8093'''
+fields:
+name:
+original: Rogers Software
+corrupted: RogersS oftware
+corruption_type: modified
+email:
+original: rogers@example.com
+corrupted: rogers@eample.com
+corruption_type: modified
+phone:
+original: 555-995-8093
+corrupted: 55-5995-8093
+corruption_type: modified
+</code></pre>
+</div>
+
+<div class="card">
+<p><button class="image-thumb" onclick="document.getElementById('img-chaos-output').showModal()">
+<img src="images/chaos_output_00.png" alt="Chaos Engine Terminal Output">
+</button></p>
+<p><dialog id="img-chaos-output" class="image-modal">
+<img src="images/chaos_output_00.png" alt="Chaos Engine Terminal Output">
+</dialog></p>
+</div>
+
+<details class="accordion">
+<summary>Why I use AI like a junior programmer.</summary>
+<div class="accordion-content">
+<p>I built the Chaos Engine using AI. But not by "vibe coding."</p>
+<p>I provided the architecture: the TOML config, the levels of corruption, the rules for ZWSP injection. The AI wrote the boilerplate for generating the random variations. I tested it, found the edge cases where it failed, and rewrote the logic.</p>
+<p>AI is a junior programmer. It writes fast, but it needs a senior architect to define the constraints, test the output, and iterate. That's how you build a tool that generates the exact nightmare your pipeline can't handle.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

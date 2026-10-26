@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>ATS Exposé - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero"><h1 class="hero-title">ATS Exposé</h1><p class="hero-subtitle">Stop paying resume gurus to beat a black box. Understand how the parser actually works.</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>Every week, job seekers are told to pay "resume gurus" to beat Applicant Tracking Systems (ATS) and advanced AI black boxes. As a data engineer with 30 years in the field, I find that hard to take seriously.</p>
+<p>It's not an AI problem. It's not even a technology problem. It's a parsing problem that was solved in the 1980s. </p>
+<p>I got so tired of the misinformation that I built a 6-page exposé on it. I generated the images, layout, and typography entirely inside a Curses terminal using a custom Python engine. </p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>The EDI Reality</h3>
+<p>We've been transmitting and parsing standardized business documents (EDI) for forty years. Every parser reads an 850 purchase order the same way because there's a rigid schema. Resumes have no schema, no standardization, and no acknowledgment messages.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>The Vendor Incentive</h3>
+<p>Why hasn't it been fixed? Because "Advanced AI screening" is a massive selling point. A solved, standardized parsing problem wouldn't look so advanced—and an industry built on guessing how proprietary parsers handle bullet points would have nothing to sell.</p>
+</div>
+
+</div>
+</div>
+
+<h3>Read the Exposé</h3>
+<p>The entire 6-page document is available below. It breaks down the EDI-to-Resume model, explains why parsers swallow your resume silently, and tells you exactly what to do about it.</p>
+<div class="card">
+<p><a href="docs/ats_blackbox.pdf" target="_blank" class="btn-primary">View the Full ATS Exposé (PDF)</a></p>
+</div>
+
+<h3>The Solution is Boring</h3>
+<p>If you want 100% ingestion accuracy, you don't need AI. You drop the bloated, styled PDFs for raw text or Markdown. You enforce rigid, standardized headers (<code># Experience</code>, <code># Skills</code>, <code># Education</code>). You map it straight into a relational database with a lightweight parser.</p>
+<p>No data loss. No formatting corruption. No vendor lock-in.</p>
+<details class="accordion">
+<summary>Why did I build this PDF in a terminal?</summary>
+<div class="accordion-content">
+<p>Because I could. And because it proves a point.</p>
+<p>I didn't use Canva. I didn't use Adobe InDesign. I used <code>curses</code>, <code>Pillow</code>, and a custom TOML template to generate the images and layout directly from my command line. It is the exact same philosophy as the Report Card and the Chaos Engine: if you understand the data, you don't need bloated software to format it.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>Will this fix the hiring industry?</summary>
+<div class="accordion-content">
+<p>No. Because the hiring industry doesn't want it fixed.</p>
+<p>Universities, career coaches, and ATS vendors all have a vested interest in the current mess. The only way to win as an applicant is to understand how the parser works, format your document for the machine, and stop paying for "AI optimization."</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>Cardex - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/tui_cardex_00.png'); background-size: cover; background-position: center;"><h1 class="hero-title">CARDex: Your Local Mini-CRM</h1><p class="hero-subtitle">A lightweight, offline rolodex for independent reps and agents. Get the rich search, filtering, and data modeling of a modern CRM without the cloud, the subscriptions, or the bloat.</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <h3>The Local Mini-CRM. Built for Speed.</h3>
+<p>CARDex is a lightweight, offline rolodex for independent reps, agents, and distributors. It gives you the rich search, filtering, and data modeling capabilities of a modern CRM without the cloud, the monthly subscriptions, or the browser bloat.</p>
+<p>It runs entirely on your local machine. No internet connection required. No data leaving your laptop. </p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>High-Density Data Entry</h3>
+<p>When you are managing hundreds of contacts and accounts, scrolling through a web page kills your productivity. CARDex fits 150+ fields onto a single 13-inch screen using the "Cabinet" UI. You navigate entirely by keyboard.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Stacked Search &amp; Filtering</h3>
+<p>You don't need a cloud database to run complex queries. CARDex uses an in-memory search stack. You can layer filters (e.g., <code>state:TN</code> + <code>company:Acme</code> + <code>status:Lead</code>) instantly, without waiting for a loading spinner.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The Interface</h3>
+<p>Because the engine is entirely driven by local SQLite databases and TOML configs, you can model the data exactly how your business operates. </p>
+<p>Here is the main grid view, showing your contact list, company details, and statuses at a glance:</p>
+<div class="card">
+<p><button class="image-thumb" onclick="document.getElementById('img-cardex-grid').showModal()">
+<img src="images/cardex_grid_00.png" alt="CARDex Grid View">
+</button></p>
+<p><dialog id="img-cardex-grid" class="image-modal">
+<img src="images/cardex_grid_00.png" alt="CARDex Grid View">
+</dialog></p>
+</div>
+
+<h3>The "Cabinet" View</h3>
+<p>When you open a specific record, you aren't bombarded with a massive scrolling form. The data is organized into Cabinets (Basic Info, Contacts, Notes, Admin). You just hit <code>Tab</code> to jump between fields or <code>&lt;-</code> and <code>-&gt;</code> to slide between cabinets. </p>
+<p>Here is the detail view for a single contact record:</p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-cardex-detail').showModal()">
+<img src="images/cardex_detail_00.png" alt="CARDex Detail View">
+</button></p>
+<p><dialog id="img-cardex-detail" class="image-modal">
+<img src="images/cardex_detail_00.png" alt="CARDex Detail View">
+</dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-cardex-detail_01').showModal()">
+<img src="images/cardex_detail_01.png" alt="CARDex Detail View">
+</button></p>
+<p><dialog id="img-cardex-detail_01" class="image-modal">
+<img src="images/cardex_detail_01.png" alt="CARDex Detail View">
+</dialog></p>
+</div>
+</div>
+
+<h3>Why Local?</h3>
+<p>Independent reps and small agencies don't need the complexity of a HubSpot or a Salesforce. They need a tool that works on a laptop, even when the internet is down. They need their data to be secure, private, and instant.</p>
+<p>CARDex is built on the Micro-Kernel architecture. It handles the SQLite CRUD, the Curses rendering, and the relational lookups locally. If you want to add a new field to track a specific contact detail, you just add it to the TOML file. The Python engine handles the rest.</p>
+<details class="accordion">
+<summary>Does it sync to the cloud?</summary>
+<div class="accordion-content">
+<p>No. That is the point. Your data lives entirely on your local drive. You don't have to worry about monthly subscription fees, data breaches on a vendor's server, or API rate limits. If you want to back it up, you just copy the <code>.db</code> file to a USB drive or a local network share.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>Can I export the data?</summary>
+<div class="accordion-content">
+<p>Yes. The action plug-in architecture allows you to export your current filtered view to TSV, CSV, or a formatted Markdown table. You can also copy a single record directly to your OS clipboard with a single keystroke.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

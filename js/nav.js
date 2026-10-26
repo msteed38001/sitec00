@@ -5,31 +5,78 @@ document.addEventListener('DOMContentLoaded', function () {
         "href": "index.html"
     },
     {
-        "label": "Pipelines",
-        "href": "pipelines.html"
-    },
-    {
-        "label": "About",
-        "href": "about.html"
-    },
-    {
-        "label": "Test",
-        "href": "test.html"
-    },
-    {
-        "label": "App",
-        "href": "app.html"
-    },
-    {
-        "label": "Docs",
+        "label": "Micro-Kernel",
         "children": [
             {
-                "label": "Nightly Pipeline",
-                "href": "pipelines.html"
+                "label": "TUI Engine",
+                "href": "tui-engine.html"
             },
             {
-                "label": "Validation Rules",
+                "label": "TUIDex",
+                "href": "tuidex.html"
+            },
+            {
+                "label": "CARDex",
+                "href": "cardex.html"
+            },
+            {
+                "label": "Social Media",
+                "href": "social-media.html"
+            }
+        ]
+    },
+    {
+        "label": "Applications",
+        "children": [
+            {
+                "label": "Website Builder",
+                "href": "website-builder.html"
+            },
+            {
+                "label": "Chaos Creator",
+                "href": "chaos-creator.html"
+            },
+            {
+                "label": "Transaction Gaps",
+                "href": "trans-gap.html"
+            },
+            {
+                "label": "Data Quality Report Card",
+                "href": "report-card.html"
+            }
+        ]
+    },
+    {
+        "label": "Business Reality",
+        "href": "business.html"
+    },
+    {
+        "label": "Documents",
+        "children": [
+            {
+                "label": "ATS Expos\u00e9",
+                "href": "ats-expose.html"
+            },
+            {
+                "label": "The Gross Margin Trap",
+                "href": "margin-trap.html"
+            }
+        ]
+    },
+    {
+        "label": "More...",
+        "children": [
+            {
+                "label": "About",
                 "href": "about.html"
+            },
+            {
+                "label": "Contact",
+                "href": "contact.html"
+            },
+            {
+                "label": "Support",
+                "href": "support.html"
             }
         ]
     }

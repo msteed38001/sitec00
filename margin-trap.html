@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>The Gross Margin Trap - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero"><h1 class="hero-title">The Gross Margin Trap</h1><p class="hero-subtitle">Your ERP says you sold an item at a 25% margin. 
+The G/L says you actually made 4.7%.</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>This is the most common, silent financial leak in distribution. The sales team thinks they are hitting their targets, the ERP dashboard is green, and the company is slowly going underwater.</p>
+<p>I built this short exposé to show exactly how the math hides the carrying cost, and why standard reporting will never catch it.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>The Illusion</h3>
+<p>The ERP system sees a purchase price, a sale price, and calculates the gross profit. It looks fine on the dashboard. But the carrying cost doesn't hit the COGS line. It hides in OpEx.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>The Reality</h3>
+<p>Storage, cost of capital, and obsolescence don't come from one place. They come from three. When you apply them, that 25% margin drops to 4.7%.</p>
+</div>
+
+</div>
+</div>
+
+<h3>Read the Breakdown</h3>
+<p>The full document walks through the exact G/L mechanics of how this happens, and what to do about it.</p>
+<div class="card">
+<p><a href="docs/inv_cost.pdf" target="_blank" class="btn-primary">View The Gross Margin Trap (PDF)</a></p>
+</div>
+
+<h3>Why I Checked My Work</h3>
+<p>I am a dyslexic data engineer. When I wrote this document, I checked it three times. With a spellchecker, with a calculator, and by reading it out loud.</p>
+<p>Because "looks right" isn't the same as "is right." And I know that better than most.</p>
+<p>It is the same reason I built the Chaos Engine. You cannot trust the dashboard. You cannot trust the parser. You have to check the math yourself, every time.</p>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

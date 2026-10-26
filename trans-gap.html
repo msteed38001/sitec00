@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>Transactions Gap - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/trans_gap.png'); background-size: cover; background-position: center;"><h1 class="hero-title">The PYTD vs. YTD Autopsy</h1><p class="hero-subtitle">Standard ERP reports show what sold. This tool shows what stopped selling. </p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>Transaction Gaps is a pure Python CLI tool that compares Prior Year-To-Date (PYTD) to Current Year-To-Date (YTD) at the customer, vendor, and item level. It ignores the noise of standard dashboards and dives into the raw transaction stream to identify true lost sales, expose hidden product line swaps, and find the customer churn hiding behind flat revenue.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>The "Vendor Swap" Trap</h3>
+<p>A sales rep can swap one product line for another just to hit an activity KPI. The overall revenue looks flat, but the customer is actually churning. Transaction Gaps catches this by comparing the exact vendor spend in the prior window against the current window.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Configurable Time Windows</h3>
+<p>You aren't locked into a trailing 12-month view. The script accepts command-line arguments to define the exact date ranges you want to compare. You can audit Q1 vs Q1, or compare 2024 to 2025, without editing a single line of code.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The Output</h3>
+<p>The script groups the output into three distinct buckets: LOST (bought in the old window, not the new), NEW (bought in the new window, not the old), and SAME (bought in both windows, but the quantity or vendor changed). </p>
+<p>Here is the actual terminal output showing a customer whose spend dropped from $110.55 to $66.33, revealing a product swap, and another customer who completely churned:</p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-gap-swap').showModal()">
+<img src="images/trans_gap_00.png" alt="Transaction Gap Vendor Swap">
+</button>
+<dialog id="img-gap-swap" class="image-modal">
+<img src="images/trans_gap_00.png" alt="Transaction Gap Vendor Swap">
+</dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-gap-lost').showModal()">
+<img src="images/trans_gap_01.png" alt="Transaction Gap Lost Customer">
+</button>
+<dialog id="img-gap-lost" class="image-modal">
+<img src="images/trans_gap_01.png" alt="Transaction Gap Lost Customer">
+</dialog></p>
+</div>
+</div>
+
+<h3>The Runtime Options</h3>
+<p>Because it's a CLI script, it's incredibly flexible. You can run a broad sweep across the whole database, or drill down into a single customer or vendor to trace the exact evidence. </p>
+<div class="card">
+<pre><code># Run the full PYTD vs YTD gap analysis
+python src/inventory/trans_gap.py
+
+# Drill down into a specific customer
+python src/inventory/trans_gap.py --customer 64628
+
+# Filter by a specific vendor
+python src/inventory/trans_gap.py --vendor 98600
+
+# Define custom prior and current date windows
+python src/inventory/trans_gap.py --prior 2025-01-01:2025-12-31 --current 2026-01-01:2026-12-31
+
+# Dump every row tagged prior/current/neither for debugging
+python src/inventory/trans_gap.py --dump
+</code></pre>
+</div>
+
+<details class="accordion">
+<summary>Why build this as a CLI script?</summary>
+<div class="accordion-content">
+<p>ERPs are great at storing data, but their reporting engines often force you into rigid, pre-defined views. If you want to compare a custom date range across specific vendors, you usually have to export to Excel and build a pivot table.</p>
+<p>This script gives you the raw analytical power of Python directly against the SQLite database. It runs in milliseconds, outputs clean CSV files for further analysis, and doesn't require a BI dashboard or a cloud connection.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

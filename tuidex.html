@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>TUIDex Application - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/tui_01.jpg'); background-size: cover; background-position: center;"><h1 class="hero-title">TUIDex: Your Local Knowledge Base</h1><p class="hero-subtitle">TUIDex is a personal knowledge manager (PKM) built for people who think in data, not just documents. </p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>While other tools force you to write sprawling, unstructured pages, TUIDex lets you model your knowledge into structured tables, link related concepts, and query everything instantly. It is a private, offline database for your brain.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Structured Note-Taking</h3>
+<p>Notes shouldn't just be a wall of text. TUIDex lets you define custom fields (tags, categories, sources, confidence levels) so you can filter and find exactly what you need without scrolling through endless paragraphs.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>The "Cabinet" Detail View</h3>
+<p>When you open a note, you aren't stuck in a single long document. The data is broken into Cabinets—Basic Info, Links, Content, and Admin. You jump between them instantly with <code>Tab</code> and arrow keys.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The Interface</h3>
+<p>Because the engine is driven by local SQLite databases, you can store thousands of entries and filter them instantly. </p>
+<p>Here is the main grid view, showing how you can categorize, tag, and scan your knowledge base at a glance:</p>
+<div class="card">
+<p><button class="image-thumb" onclick="document.getElementById('img-tuidex-grid').showModal()">
+<img src="images/tuidex_grid_00.png" alt="TUIDex Grid View">
+</button>
+<dialog id="img-tuidex-grid" class="image-modal">
+<img src="images/tuidex_grid_00.png" alt="TUIDex Grid View">
+</dialog></p>
+</div>
+
+<h3>The Detail View</h3>
+<p>When you drill into a specific entry, the "Cabinet" UI keeps your screen uncluttered. You can capture long-form text, raw content, and metadata without losing context. </p>
+<p>Here is the basic data entry cabinet:</p>
+<div class="columns-wrapper">
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-tuidex-detail-0').showModal()">
+<img src="images/tuidex_detail_00.png" alt="TUIDex Detail View 1">
+</button>
+<dialog id="img-tuidex-detail-0" class="image-modal">
+<img src="images/tuidex_detail_00.png" alt="TUIDex Detail View 1">
+</dialog></p>
+</div>
+<div class="column">
+<p><button class="image-thumb" onclick="document.getElementById('img-tuidex-detail-1').showModal()">
+<img src="images/tuidex_detail_01.png" alt="TUIDex Detail View 2">
+</button>
+<dialog id="img-tuidex-detail-1" class="image-modal">
+<img src="images/tuidex_detail_01.png" alt="TUIDex Detail View 2">
+</dialog></p>
+</div>
+</div>
+
+<h3>Why Local?</h3>
+<p>Cloud-based PKMs like Notion or Evernote are great, until you lose internet access, hit a subscription paywall, or realize your private notes are being used to train an AI model. </p>
+<p>TUIDex keeps everything on your local drive. It is fast, private, and permanent. Because it uses the Micro-Kernel architecture, you can customize the fields, create custom actions, and export your data to Markdown at any time. You own the data. </p>
+<details class="accordion">
+<summary>Can I link entries to each other?</summary>
+<div class="accordion-content">
+<p>Yes. The engine supports relational lookups. You can link a note to a specific project, vendor, or another note. The lookup tables are cached in memory, so the relations render instantly without a network request.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>How does it handle long-form content?</summary>
+<div class="accordion-content">
+<p>For long-form text or raw HTML/Markdown, TUIDex uses a full-screen text editor with horizontal scrolling. You can even press <code>F4</code> to drop into Notepad to write the content, and the TUI will instantly read it back into the database when you save.</p>
+</div>
+</details>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>The Website Engine - Steed Data Engineering</title>
+    
+    <link rel="stylesheet" href="site.css">
+</head>
+<body>
+    <nav id="site-nav"></nav>
+
+    <header class="zone-header">
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
+    </header>
+
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/website_engine_00.png'); background-size: cover; background-position: center;"><h1 class="hero-title">The Local-First Web</h1><p class="hero-subtitle">No WordPress. No AWS. Just a custom-built Python engine rendering static pages from an 8GB machine. Modern web delivery through veteran data engineering.</p></div>
+
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <h3>The site you are looking at right now was built with a 1,500-line Python script.</h3>
+<p>I didn't use WordPress. I didn't use Webflow. I didn't use a single line of React, Bootstrap, or Tailwind.</p>
+<p>I built my own static site generator. It runs locally, compiles in milliseconds, and outputs pure HTML and CSS. </p>
+<h3>Why build my own?</h3>
+<p>Because modern web development is a mess. If you want a simple website, you have to install a CMS, manage plugins, fight with updates, and hope the server doesn't crash. </p>
+<p>I wanted a tool that did exactly what I needed, and nothing more. So I built it.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Custom Markdown Parser</h3>
+<p>Standard Markdown is too flat for complex layouts. So I extended it. I can write <code>:::columns</code> or <code>:::card</code> or <code>:::chart</code> in a text file, and my engine parses it into responsive HTML components.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Math-Based Colors</h3>
+<p>I am color blind. I can't see a color wheel. So I built a theme generator. I give it a base hex code, and it mathematically generates a harmonious, WCAG-compliant color palette.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The "No Framework" Advantage</h3>
+<p>Look at the source code of this page. You won't find a single utility class. You won't find a massive CSS framework clogging up the network request.</p>
+<p>I write pure CSS. I use native flexbox. I use standard media queries. </p>
+<p>Because the engine is built on pure data and pure CSS, the site loads instantly. It works offline. It requires zero maintenance. There is no database to hack, no plugins to update, and no cloud server to pay for.</p>
+<h3>The Engine in Action</h3>
+<p>This isn't a drag-and-drop builder. It is a data pipeline. I don't pick colors; I generate them mathematically. Here are the actual commands that built the themes on this site:</p>
+<div class="card">
+<pre><code># Generating a light theme from a medical blue
+python src/manage.py generate --name &quot;Hospital Light&quot; --base &quot;#0055A4&quot; --mode &quot;light&quot;
+
+# Generating a dark theme from a neon hacker green
+python src/manage.py generate --name &quot;Terminal Dark&quot; --base &quot;hacker_green&quot; --mode &quot;dark&quot;
+
+# Manually overriding the button text to black for readability
+python src/manage.py tweak --id 7 --field btn_text --value &quot;#000000&quot;
+
+# Compiling the static site
+python src/build.py --site intranet
+
+# Output
+Generated site.css
+Generated js/nav.js
+Generated index.html
+Generated about.html
+Generated web_engine.html
+Copied app.html
+Copied docs/
+Copied images/
+Copied js/
+Copied manifest.json
+Copied sw.js
+Copied content.db for dynamic app
+
+Build complete for 'Steed Data Engineering'.
+</code></pre>
+</div>
+
+<div class="card">
+<p><button class="image-thumb" onclick="document.getElementById('img-theme-create').showModal()">
+<img src="images/theme_create_00.png" alt="Theme Generation Output">
+</button>
+<dialog id="img-theme-create" class="image-modal">
+<img src="images/theme_create_00.png" alt="Theme Generation Output">
+</dialog></p>
+</div>
+    </main>
+    <footer class="zone-footer">
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
+    </footer>
+
+    <script src="js/nav.js"></script>
+</body>
+</html>

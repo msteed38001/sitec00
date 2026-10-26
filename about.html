@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About BFRO2. - Hello Site</title>
+    <!--<title>$title - Steed Data Engineering</title>-->
+	<title>About Steed. - Steed Data Engineering</title>
     
     <link rel="stylesheet" href="site.css">
 </head>
@@ -11,196 +12,65 @@
     <nav id="site-nav"></nav>
 
     <header class="zone-header">
-        <a href="index.html" class="site-title">Hello Site</a>
+        <a href="index.html" class="site-title">Steed Data Engineering</a>
     </header>
 
-    <main class="zone-center">
-        
-        <h2 class="page-title">About BFRO2.</h2>
-        <h1>Level 4: BOM Reference</h1>
-<h2>Purpose</h2>
-<p>BOM (Byte Order Mark) is metadata at the beginning of a file that tells software how to interpret the file's encoding. It is invisible in most editors, behaves unpredictably across systems, and can break pipelines silently. This document explains what BOM is, how to detect it, how to fix it, and why it's often the last thing data professionals think to check.</p>
-<p><img src="images/bio_photo.jpg" width="25%" alt="System Diagram">
-<img src="images/test.jpg" width="25%" alt="System Diagram"></p></p>
-<hr />
-<h2>1. What is BOM?</h2>
-<p><strong>Byte Order Mark (BOM)</strong> is a sequence of bytes at the start of a file that indicates the file's encoding and byte order.</p>
-<table>
-<thead>
-<tr>
-<th>Encoding</th>
-<th>BOM Bytes</th>
-<th>Hex</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>UTF-8</td>
-<td><code>EF BB BF</code></td>
-<td><code>\xef\xbb\xbf</code></td>
-</tr>
-<tr>
-<td>UTF-16 BE</td>
-<td><code>FE FF</code></td>
-<td><code>\xfe\xff</code></td>
-</tr>
-<tr>
-<td>UTF-16 LE</td>
-<td><code>FF FE</code></td>
-<td><code>\xff\xfe</code></td>
-</tr>
-<tr>
-<td>UTF-32 BE</td>
-<td><code>00 00 FE FF</code></td>
-<td><code>\x00\x00\xfe\xff</code></td>
-</tr>
-<tr>
-<td>UTF-32 LE</td>
-<td><code>FF FE 00 00</code></td>
-<td><code>\xff\xfe\x00\x00</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>UTF-8 BOM is the most common culprit.</strong></p>
-<hr />
-<h2>2. What BOM Looks Like</h2>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>What You See</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Notepad++</td>
-<td>Nothing visible (status bar shows "UTF-8-BOM")</td>
-</tr>
-<tr>
-<td>VS Code</td>
-<td>Nothing visible (bottom bar shows "UTF-8 with BOM")</td>
-</tr>
-<tr>
-<td>Excel</td>
-<td>Nothing visible</td>
-</tr>
-<tr>
-<td>Calc</td>
-<td>Nothing visible</td>
-</tr>
-<tr>
-<td>Hex editor</td>
-<td><code>EF BB BF</code> at the start</td>
-</tr>
-<tr>
-<td>Python (repr)</td>
-<td><code>\ufeff</code> at the start of the string</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>Breaks silently</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>3. Why BOM is a Problem</h2>
-<table>
-<thead>
-<tr>
-<th>Problem</th>
-<th>Why</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Invisible</td>
-<td>You can't see it</td>
-</tr>
-<tr>
-<td>Silent</td>
-<td>Most tools don't warn you</td>
-</tr>
-<tr>
-<td>Destructive</td>
-<td>Breaks parsers, joins, comparisons</td>
-</tr>
-<tr>
-<td>Persistent</td>
-<td>Survives copy/paste, file conversions</td>
-</tr>
-<tr>
-<td>Unpredictable</td>
-<td>Some tools handle it, others don't</td>
-</tr>
-<tr>
-<td>Overlooked</td>
-<td>No one thinks about file headers</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>4. How BOM Breaks Things</h2>
-<table>
-<thead>
-<tr>
-<th>Scenario</th>
-<th>What Happens</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CSV import</td>
-<td>First field contains <code>\ufeff</code> -&gt; field name mismatch</td>
-</tr>
-<tr>
-<td>JSON parse</td>
-<td>Invalid JSON -&gt; parse error</td>
-</tr>
-<tr>
-<td>SQL <code>WHERE</code></td>
-<td><code>column = 'value'</code> fails (value has BOM)</td>
-</tr>
-<tr>
-<td>API</td>
-<td>Sending BOM as part of payload -&gt; signature mismatch</td>
-</tr>
-<tr>
-<td>ETL</td>
-<td>Pipeline fails at first record -&gt; no error message</td>
-</tr>
-<tr>
-<td>File comparison</td>
-<td>Two identical files look different -&gt; <code>diff</code> fails</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>5. How to Detect BOM</h2>
-<h3>In Notepad++</h3>
-<ol>
-<li>Open the file</li>
-<li>Look at the status bar (bottom right)</li>
-<li>If it says <strong>"UTF-8-BOM"</strong>, BOM is present</li>
-<li>If it says <strong>"UTF-8"</strong>, BOM is not present</li>
-</ol>
-<h3>In VS Code</h3>
-<ol>
-<li>Open the file</li>
-<li>Look at the bottom bar</li>
-<li>If it says <strong>"UTF-8 with BOM"</strong>, BOM is present</li>
-<li>If it says <strong>"UTF-8"</strong>, BOM is not present</li>
-</ol>
-<h3>In Python</h3>
-<p>```python
-def has_bom(filepath: str) -&gt; bool:
-    """Check if a file has a BOM marker."""
-    with open(filepath, "rb") as f:
-        first_bytes = f.read(3)
-    return first_bytes.startswith(b'\xef\xbb\xbf')</p>
-    </main>
+    <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/steed_01.png'); background-size: cover; background-position: center;"><h1 class="hero-title">The Floppy Disk Engineer</h1><p class="hero-subtitle">I have been building data systems for over 30 years. I started when a floppy disk was a decent amount of space, and I've written production code in GWBASIC, QBasic, PL/B, FoxPro, VB, and now Python.</p></div>
 
+    <main class="zone-center">
+        <!--<h2 class="page-title">$title</h2>-->
+		<h2 class="page-title"></h2>
+        <p>I am a data engineer. I am color-blind. I am dyslexic. I have zero patience for software that is slow, bloated, or designed by people who have never actually run a business.</p>
+<p>I don't sell consulting hours. I don't build 50-slide PowerPoint decks. I find the data problems that are costing you money, and I build the lightweight tools to fix them.</p>
+<div class="columns-wrapper">
+<div class="column">
+<div class="card">
+<h3>Why I Build My Own Tools</h3>
+<p>I built my own website builder because Wix and WordPress were too slow. I built my own terminal UI because GUI frameworks choke on 75,000 rows. I built my own theme generator because I can't see a color wheel.</p>
+<p>When the standard tools fail, I write the 500 lines of Python required to do it right.</p>
+</div>
+
+</div>
+<div class="column">
+<div class="card">
+<h3>Why I Work Remote</h3>
+<p>I don't need a massive office or an open-plan floor. I do my best work on an 8GB laptop with a 13-inch screen.</p>
+<p>I've spent decades integrating with ERPs, building local-first web apps, and auditing supply chain data. I can do it from anywhere, and I don't need a cloud server to do it.</p>
+</div>
+
+</div>
+</div>
+
+<h3>The "No Buzzwords" Philosophy</h3>
+<p>The modern tech industry is full of "AI experts" and "Cloud Architects" who will charge you a fortune to migrate your data to AWS. </p>
+<p>I don't do that. I use AI like a junior programmer to write boilerplate, but I provide the 30 years of business logic. I use scripts, SFTP, and SQLite to move data because it's faster, cheaper, and more secure than a cloud pipeline.</p>
+<p>If you want someone to configure your VPN, hire a managed service provider. If you want someone to find the $40,000 in dead inventory hiding in your General Ledger, hire me.</p>
+<details class="accordion">
+<summary>What is it like to work with me?</summary>
+<div class="accordion-content">
+<p>I am direct. I don't tinker. I don't build solutions for problems that don't exist.</p>
+<p>I will tell you exactly what is wrong with your data, why it's wrong, and what it will cost to fix it. If that means telling you to write off a warehouse full of dead stock, I'll tell you that, too.</p>
+<p>I don't do well in corporate environments that require three meetings to approve a font change. I do well when you have a specific, thorny data problem and you need it solved by next Tuesday.</p>
+</div>
+</details>
+
+<details class="accordion">
+<summary>Do you want to hire me?</summary>
+<div class="accordion-content">
+<p>I am available for remote fractional data engineering engagements, architecture reviews, and custom application builds.</p>
+<p>If your pipelines are breaking, your ERP data is a mess, or you just need a custom tool that actually works, you can reach me directly at <a href="mailto:msteed38001@gmail.com">msteed38001@gmail.com</a> or at (731) 300-6918.</p>
+</div>
+</details>
+    </main>
     <footer class="zone-footer">
-        <p>&copy; 2026 Hello Site</p>
+        <div class="footer-contact">
+            <p><strong>Contact:</strong> <a href='tel:+17313006918'>(731) 300-6918</a> | <a href='mailto:msteed38001@gmail.com'>msteed38001@gmail.com</a></p>
+            <p>Service Areas: Tennessee | Arkansas | Missouri | Mississippi | Louisiana | Kentucky</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a> <a href="support.html">Support</a> <a href="contact.html">Contact</a> 
+        </div>
+        <p class="footer-copyright">© 2026 Steed Data Engineering</p>
     </footer>
 
     <script src="js/nav.js"></script>
